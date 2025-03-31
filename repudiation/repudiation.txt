@@ -1,2 +1,9 @@
 - Briefly explain the vulnerability and why the secure version is better at preventing repudiation than the insecure version.
 - What additional security mechanisms can you incorporate to prevent such attacks?
+
+Additional security mechanisms that could be incorporated:
+1. Digital signatures for messages to verify authenticity
+2. Secure, tamper-evident logging mechanisms (e.g., blockchain-based audit logs)
+3. Implementation of real user authentication and authorization (not just placeholders)
+4. Session management with unique session IDs
+5. More detailed user activity logging including browser information and device fingerprinting

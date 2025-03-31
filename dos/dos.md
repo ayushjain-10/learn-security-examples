@@ -33,3 +33,23 @@ Answer the following:
 1. Briefly explain the potential vulnerabilities in **insecure.ts** that can lead to a DoS attack.
 2. Briefly explain how a malicious attacker can exploit them.
 3. Briefly explain the defensive techniques used in **secure.ts** to prevent the DoS vulnerability?
+
+## Answers
+
+1. Potential vulnerabilities in insecure.ts that can lead to a DoS attack:
+   - No input validation for the 'id' query parameter, allowing any type of input including MongoDB operators
+   - Lack of error handling, causing unhandled exceptions when invalid queries are processed
+   - No request rate limiting, allowing attackers to send unlimited requests in rapid succession
+   - Absence of query timeout settings, allowing long-running database operations
+
+
+2. How a malicious attacker can exploit these vulnerabilities:
+   - By using NoSQL injection with MongoDB operators like [$ne] (not equal) to create computationally expensive queries that scan the entire database
+   - Sending malformed IDs that cause the server to throw unhandled exceptions and crash
+   - Flooding the server with a high volume of requests in a short time period
+   - Chaining multiple attacks simultaneously to amplify the effect and make the server completely unresponsive to legitimate users
+
+3. Defensive techniques used in secure.ts to prevent DoS vulnerability:
+   - Implementation of rate limiting with express-rate-limit, restricting each IP to 1 request per 5 seconds
+   - Proper error handling with try/catch blocks to prevent unhandled exceptions from crashing the server
+   - Timeouts are implied through the error handling mechanism, preventing long-running queries from consuming resources indefinitely
